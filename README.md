@@ -13,8 +13,8 @@ manual (Anterior, Siguiente, Aleatorio) y reproducción automática, construida 
 - Sitio publicado: https://testimonios-javier-clara.surge.sh/
 
 ## Etapa actual
-Etapa básica (P01–P10) y ampliación con reproducción automática (A01–A07) terminadas.
-Experimento de reutilización realizado.
+Práctica terminada: etapa básica (P01–P10), ampliación con reproducción automática (A01–A07)
+y experimento de reutilización. Sprint 1 (19 puntos) y Sprint 2 (9 puntos) completados.
 
 ## Versiones
 - Node.js: v24.15.0
@@ -81,7 +81,8 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | #18 |
 | 07 | #8 | Revisión por otra pareja; se atendieron sus sugerencias | Javier | Clara | #19 |
 | 08 | #9 | Reproducción automática con `useEffect` (Pausar/Reanudar) | Javier | Clara | #__ |
-| 09 | #10 | Experimento de reutilización (rama `experimento-reutilizacion`) | Clara | Javier | este PR |
+| 09 | #10 | Experimento de reutilización (rama `experimento-reutilizacion`) | Clara | Javier | #__ |
+| 10 | #11 | README final, reflexiones y entrega | Javier y Clara | Javier y Clara | este PR |
 
 ## Traza del índice (tres registros)
 
@@ -174,3 +175,82 @@ Se hizo en la rama `experimento-reutilizacion`, que no se fusionó a `main`.
 | Cambiar los textos de los controles | `Controls.jsx` |
 | Cambiar el comportamiento de navegación | `App.jsx` |
 | Modificar apariencia sin cambiar navegación | `styles.css` |
+
+## Evidencias de comprensión
+- **Qué baja de App a cada hijo:** a `Testimonial` le baja el objeto `item` (el testimonio actual);
+  a `Controls` le bajan las funciones `onPrev`, `onNext` y `onRandom`. Ningún hijo recibe ni cambia el índice.
+- **Recorrido de un clic:** clic en Siguiente → `Controls` llama `onNext` → `App` ejecuta
+  `setIndex(actual => (actual + 1) % total)` → React vuelve a renderizar `App` con el nuevo índice →
+  `Testimonial` recibe otro `item` → React confirma en el DOM solo lo que cambió.
+- **Por qué no `testimonios[index + 1]`:** en el último registro el índice saldría del arreglo,
+  `testimonios[8]` sería `undefined` y leer `item.nombre` rompería la app. El `%` regresa al 0.
+- **Error encontrado y comprobación:** ver "Corrección registrada" en las pruebas P01–P10.
+
+## Retrospectiva
+- **Qué funcionó:** trabajar con un issue, una rama y un Pull Request por avance; alternar
+  Driver y Navigator; revisar cada PR antes de fusionarlo; registrar las pruebas con resultados reales.
+- **Qué mejoraríamos:** crear siempre la rama antes de programar (nos pasó en el Avance 2),
+  escribir `Closes #n` en la descripción del PR desde el inicio y actualizar el README en cada avance.
+
+## Reflexión individual
+
+### Javier
+1. **Qué reutilicé y qué duplicación evité:** reutilicé `Testimonial`. En el experimento, tres tarjetas
+   usaron el mismo componente y un solo cambio en `.testimonial-card` las modificó todas; sin él habría
+   copiado la imagen, el nombre, el cargo y el comentario en cada lugar.
+2. **Comparación con actualizar el DOM a mano:** con JavaScript puro tendría que buscar con `querySelector`
+   la foto, el nombre, el cargo, el texto y el contador y cambiarlos uno por uno en cada botón.
+   Con React solo cambio `index` y la interfaz se recalcula.
+3. **Qué depende de nuestro diseño y qué aporta React:** la separación en `data.js`, `Testimonial`,
+   `Controls` y `App`, y que solo `App` tenga el estado, es decisión nuestra. React aporta el mecanismo:
+   volver a renderizar al cambiar el estado y aplicar solo los cambios necesarios en el DOM.
+4. **Costo de usar React en una app pequeña:** hay que instalar Node, Vite y dependencias, y aprender
+   JSX y Hooks. Para una página con pocos testimonios fijos bastaría HTML, CSS y JavaScript.
+5. **Lo que todavía no comprendo:** por qué `StrictMode` ejecuta los efectos dos veces solo en desarrollo:
+   ¿cómo sé si un problema que veo en desarrollo también pasaría en producción?
+
+### Clara
+1. **Qué reutilicé y qué duplicación evité:** reutilicé `Controls` y las mismas funciones `next` y `prev`
+   tanto para los botones como para el autoplay; con `setIndex(actual => ...)` no tuve que repetir el cálculo.
+2. **Comparación con actualizar el DOM a mano:** en la práctica anterior, `legacy.js` reconstruía la lista
+   con `innerHTML`; aquí el componente describe la interfaz con el estado actual y React la actualiza.
+3. **Qué depende de nuestro diseño y qué aporta React:** decidimos que `Controls` solo avise con callbacks
+   y no conozca el índice; React aporta `useState`, el renderizado y la confirmación de cambios en el DOM.
+4. **Costo de usar React en una app pequeña:** un error de import o de nombre deja la página en blanco
+   y hay que revisar la consola; también costó entender que `onClick={onNext()}` se ejecuta al renderizar.
+5. **Lo que todavía no comprendo:** si los testimonios vinieran de una API, ¿dónde conviene cargarlos
+   y qué pasa con el índice si llega un arreglo más corto?
+
+## Historial de commits
+
+C:\Users\23031\Downloads\React_Testimonios\React_Testimonios>git log --format="%h | %an | %ad | %s" --date=short 
+92f288b | LilTacoH2O | 2026-11-05 | Merge pull request #21 from LilTacoH2O/avance-09-reutilizacion
+baaf51b | pauli050 | 2026-11-05 | Avance 09 (#10): comparacion de reutilizacion en README - Driver: Clara / Navigator: Javier
+bec4dff | pauli050 | 2026-11-05 | Merge pull request #20 from LilTacoH2O/avance-08-autoplay
+e610835 | Javier Alexander Martinez Flores | 2026-11-05 | Avance 08 (#9): reproduccion automatica con useEffect y limpieza - Driver: Javier / Navigator: Clara
+2695cbc | pauli050 | 2026-11-05 | Merge pull request #19 from LilTacoH2O/avance-07-revision
+7cff041 | Javier Alexander Martinez Flores | 2026-11-05 | Avance 07 (#8): sugerencias de la revision por otra pareja - Driver: Javier / Navigator: Clara
+92e3843 | LilTacoH2O | 2026-11-04 | Merge pull request #18 from LilTacoH2O/avance-06-verificacion
+7d7bd83 | pauli050 | 2026-11-04 | Avance 06 (#7): ocho registros y pruebas P01-P10 - Driver: Clara / Navigator: Javier
+398ebb5 | pauli050 | 2026-11-04 | Merge pull request #17 from LilTacoH2O/avance-05-estilos
+e3d6a0d | Javier Alexander Martinez Flores | 2026-11-04 | Avance 05 (#6): estilos responsive y foco v
+isible - Driver: Javier / Navigator: Clara
+ad9bdf1 | LilTacoH2O | 2026-11-04 | Merge pull request #16 from LilTacoH2O/avance-04-navegacion
+b5287a2 | pauli050 | 2026-11-04 | Avance 04 (#5): navegacion con Controls y useState, README actualiz
+ado - Driver: Clara / Navigator: Javier
+a13bd5e | LilTacoH2O | 2026-11-04 | Merge pull request #15 from LilTacoH2O/avance-04-navegacion
+9a5c715 | pauli050 | 2026-11-04 | Avance 04 (#5): navegacion con Controls y useState - Driver: Clara 
+/ Navigator: Javier
+a4dd014 | LilTacoH2O | 2026-11-04 | Merge pull request #14 from LilTacoH2O/docs-readme-avances
+514de22 | Javier Alexander Martinez Flores | 2026-11-04 | README: estructura, decisiones y registro d
+e avances 01-03 - Driver: Javier / Navigator: Clara
+916aadc | pauli050 | 2026-11-04 | Merge pull request #13 from LilTacoH2O/avance-03-tarjeta
+6cc0467 | Javier Alexander Martinez Flores | 2026-11-04 | Avance 03 (#4): componente Testimonial y mo
+ntaje de la app - Driver: Javier / Navigator: Clara
+da186f7 | LilTacoH2O | 2026-11-04 | Merge pull request #12 from LilTacoH2O/avance-02-datos
+9be9082 | pauli050 | 2026-11-04 | Avance 02 (#3): datos de testimonios en data.js - Driver: Clara / N
+avigator: Javier
+f17e88c | Javier Alexander Martinez Flores | 2026-11-04 | Avance 01 (#2): proyecto base con Vite + Re
+act - Driver: Javier / Navigator: Clara
+5b4a341 | LilTacoH2O | 2026-11-04 | Initial commit
+(END)
