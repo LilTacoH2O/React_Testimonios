@@ -1,7 +1,7 @@
 # Testimonios · Práctica inicial de React
 
 Aplicación que muestra testimonios ficticios de uno en uno, con navegación
-manual (Anterior, Siguiente, Aleatorio), construida con React y Vite.
+manual (Anterior, Siguiente, Aleatorio) y reproducción automática, construida con React y Vite.
 
 ## Integrantes
 - Martínez Flores Javier Alexander
@@ -10,11 +10,10 @@ manual (Anterior, Siguiente, Aleatorio), construida con React y Vite.
 ## Enlaces
 - Repositorio: https://github.com/LilTacoH2O/React_Testimonios
 - Tablero Scrum: https://github.com/users/LilTacoH2O/projects/1
-- Sitio publicado: http://testimonios-javier-clara.surge.sh/
+- Sitio publicado: https://testimonios-javier-clara.surge.sh/
 
 ## Etapa actual
-Sprint 1 · Etapa básica terminada: P01–P10 aprobadas y revisión por otra pareja.
-En desarrollo: Sprint 2 · Ampliación.
+Etapa básica (P01–P10) y ampliación con reproducción automática (A01–A07) terminadas.
 
 ## Versiones
 - Node.js: v24.15.0
@@ -32,7 +31,7 @@ npm run preview   # revisar la compilación localmente
 ## Estructura
 - `index.html`: contiene `<div id="root">` y carga `src/main.jsx`.
 - `src/main.jsx`: crea la raíz de React, importa los estilos y monta App.
-- `src/App.jsx`: componente principal; conserva el índice con `useState` y coordina la navegación.
+- `src/App.jsx`: componente principal; conserva el índice y la reproducción con `useState`, y el temporizador con `useEffect`.
 - `src/data.js`: arreglo de ocho testimonios ficticios (tres del docente y cinco agregados).
 - `src/components/Testimonial.jsx`: presenta un testimonio recibido por props.
 - `src/components/Controls.jsx`: botones Anterior, Siguiente y Aleatorio que avisan a App con callbacks.
@@ -56,6 +55,8 @@ npm run preview   # revisar la compilación localmente
 8. **Diseño adaptable y accesible.** La tarjeta mide como máximo 560 px y ocupa todo el ancho en móvil;
    `overflow-wrap: anywhere` evita el desplazamiento horizontal con textos largos;
    los botones miden al menos 44 px y tienen foco visible para usarse con teclado.
+9. **Temporizador en un efecto.** La reproducción automática usa `useEffect` con limpieza
+   (`clearInterval`) y dependencias `[reproduciendo, total]`; la navegación manual la pausa.
 
 ## Scrum y Pair Programming
 Historia de usuario: "Como visitante de un sitio web, quiero consultar testimonios
@@ -74,10 +75,11 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | 02 | #3 | `data.js` con los tres testimonios del docente | Clara | Javier | #12 |
 | 03 | #4 | Componente `Testimonial` y montaje con `main.jsx` | Javier | Clara | #13 |
 | — | — | README con estructura, decisiones y registro de avances | Javier | Clara | #14 |
-| 04 | #5 | `Controls` y navegación con `useState` (Anterior, Siguiente, Aleatorio) | Clara | Javier | #16 |
+| 04 | #5 | `Controls` y navegación con `useState` (Anterior, Siguiente, Aleatorio) | Clara | Javier | #15 |
 | 05 | #6 | Estilos responsive y foco visible | Javier | Clara | #17 |
-| 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | #__ |
-| 07 | #8 | Revisión por otra pareja; se atendieron sus sugerencias | Javier | Clara | este PR |
+| 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | #18 |
+| 07 | #8 | Revisión por otra pareja; se atendieron sus sugerencias | Javier | Clara | #19 |
+| 08 | #9 | Reproducción automática con `useEffect` (Pausar/Reanudar) | Javier | Clara | este PR |
 
 ## Traza del índice (tres registros)
 
@@ -116,8 +118,9 @@ comentando temporalmente los objetos de `data.js`, que después se restauró.
   que la rama tenía el commit y que `main` no había cambiado.
 
 ### Revisión de consola
-Los errores que aparecían en la consola de Chrome venían de una extensión del navegador.
-En una ventana de incógnito, sin extensiones, la consola no mostró errores de la aplicación.
+Los errores que aparecían en la consola de Chrome venían de una extensión del navegador
+y de la simulación de red sin conexión de las herramientas de desarrollo (Network throttling en Offline).
+Con la red normal y en una ventana de incógnito, la consola no mostró errores de la aplicación.
 
 ## Revisión por otra pareja
 - **Pareja revisora:** Juan Martín Arriaga Alejos y Owen Alberto Hernández Naranjillo.
@@ -132,3 +135,23 @@ En una ventana de incógnito, sin extensiones, la consola no mostró errores de 
 - **Cambios realizados:** se agregó el enlace del tablero (y el del sitio publicado) y se eliminó `src/assets`.
 - **Revisión que hicimos nosotros:** revisamos el proyecto de la misma pareja
   (https://github.com/nitram047/carousel-testimonial).
+
+## Ampliación: reproducción automática (A01–A07)
+- **Funcionamiento:** el carrusel empieza pausado. Reanudar avanza cada 5 segundos; Pausar lo detiene;
+  usar Anterior, Siguiente o Aleatorio pausa la reproducción.
+- **useEffect:** el temporizador es externo al cálculo del JSX, por eso se crea en un efecto y no en el cuerpo de App.
+  Solo se crea si `reproduciendo` es verdadero y hay al menos dos registros.
+- **Limpieza:** `return () => clearInterval(intervalo)` elimina el intervalo antes de repetir el efecto
+  y al desmontar el componente; evita intervalos acumulados.
+- **Dependencias:** `[reproduciendo, total]`; el efecto se sincroniza otra vez solo si cambian.
+- Se quitó `aria-live` del contador para no anunciar la posición cada 5 segundos.
+
+| Prueba | Resultado esperado | Resultado obtenido | Estado |
+|---|---|---|---|
+| A01 Activación | Reanudar inicia avances cada ~5 s | Avanza cada ~5 s y el botón cambia a Pausar | Aprobado |
+| A02 Pausa | Pausar mantiene el testimonio | Se queda fijo más de 5 s | Aprobado |
+| A03 Acción manual | Anterior/Siguiente/Aleatorio cambian y pausan | Cambia y el botón vuelve a Reanudar | Aprobado |
+| A04 Reanudación | Varias veces sin aceleración | Mantiene ~5 s entre cambios | Aprobado |
+| A05 Límites | El último vuelve al primero | Del 8 pasa al 1 | Aprobado |
+| A06 Pocos datos | Con 0 o 1 registro no se crea un intervalo | Con 1 registro no aparece Reanudar; con 0 aparece el mensaje sin botones | Aprobado |
+| A07 Limpieza | Sin intervalos acumulados | Tras alternar Pausar/Reanudar sigue cada ~5 s; al pausar se detiene; `clearInterval` en el return del efecto | Aprobado |
