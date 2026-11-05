@@ -80,9 +80,9 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | 05 | #6 | Estilos responsive y foco visible | Javier | Clara | #17 |
 | 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | #18 |
 | 07 | #8 | Revisión por otra pareja; se atendieron sus sugerencias | Javier | Clara | #19 |
-| 08 | #9 | Reproducción automática con `useEffect` (Pausar/Reanudar) | Javier | Clara | #__ |
-| 09 | #10 | Experimento de reutilización (rama `experimento-reutilizacion`) | Clara | Javier | #__ |
-| 10 | #11 | README final, reflexiones y entrega | Javier y Clara | Javier y Clara | este PR |
+| 08 | #9 | Reproducción automática con `useEffect` (Pausar/Reanudar) | Javier | Clara | #20 |
+| 09 | #10 | Experimento de reutilización (rama `experimento-reutilizacion`) | Clara | Javier | #21|
+| 10 | #11 | README final, reflexiones y entrega | Javier y Clara | Javier y Clara | #22|
 
 ## Traza del índice (tres registros)
 
