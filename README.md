@@ -34,7 +34,7 @@ npm run preview   # revisar la compilación localmente
 - `src/data.js`: arreglo de testimonios ficticios (datos del docente).
 - `src/components/Testimonial.jsx`: presenta un testimonio recibido por props.
 - `src/components/Controls.jsx`: botones Anterior, Siguiente y Aleatorio que avisan a App con callbacks.
-- `src/styles.css`: estilos de la práctica (se completan en el avance 5).
+- `src/styles.css`: estilos responsive (320, 768 y 1280 px), foco visible y botones de 44 px.
 
 ## Decisiones principales
 1. **Datos separados de la presentación.** `data.js` solo contiene datos;
@@ -51,6 +51,9 @@ npm run preview   # revisar la compilación localmente
    muestra el mismo testimonio cuando hay dos o más.
 7. **Casos de 0 y 1 registros.** Con 0 se muestra un mensaje sin acceder a los campos;
    con 1, `random` no hace nada y los demás botones mantienen el registro.
+8. **Diseño adaptable y accesible.** La tarjeta mide como máximo 560 px y ocupa todo el ancho en móvil;
+   `overflow-wrap: anywhere` evita el desplazamiento horizontal con textos largos;
+   los botones miden al menos 44 px y tienen foco visible para usarse con teclado.
 
 ## Scrum y Pair Programming
 Historia de usuario: "Como visitante de un sitio web, quiero consultar testimonios
@@ -69,8 +72,8 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | 02 | #3 | `data.js` con los tres testimonios del docente | Clara | Javier | #12 |
 | 03 | #4 | Componente `Testimonial` y montaje con `main.jsx` | Javier | Clara | #13 |
 | — | — | README con estructura, decisiones y registro de avances | Javier | Clara | #14 |
-| 04 | #5 | `Controls` y navegación con `useState` (Anterior, Siguiente, Aleatorio) | Clara | Javier | #__ |
-
+| 04 | #5 | `Controls` y navegación con `useState` (Anterior, Siguiente, Aleatorio) | Clara | Javier | #16 |
+| 05 | #6 | Estilos responsive y foco visible | Javier | Clara | este PR |
 ## Traza del índice (tres registros)
 
 | Acción | Índice antes | Cálculo | Índice después | Pantalla |
