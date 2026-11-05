@@ -12,7 +12,8 @@ manual (Anterior, Siguiente, Aleatorio), construida con React y Vite.
 - Tablero Scrum: [pegar enlace del proyecto React Testimonios · Scrum]
 
 ## Etapa actual
-En desarrollo: Sprint 1 · Etapa básica.
+Sprint 1 · Etapa básica: navegación, estilos y pruebas P01–P10 terminados.
+Pendiente: revisión por otra pareja y Sprint 2 (ampliación).
 
 ## Versiones
 - Node.js: v24.15.0
@@ -31,7 +32,7 @@ npm run preview   # revisar la compilación localmente
 - `index.html`: contiene `<div id="root">` y carga `src/main.jsx`.
 - `src/main.jsx`: crea la raíz de React, importa los estilos y monta App.
 - `src/App.jsx`: componente principal; conserva el índice con `useState` y coordina la navegación.
-- `src/data.js`: arreglo de testimonios ficticios (datos del docente).
+- `src/data.js`: arreglo de ocho testimonios ficticios (tres del docente y cinco agregados).
 - `src/components/Testimonial.jsx`: presenta un testimonio recibido por props.
 - `src/components/Controls.jsx`: botones Anterior, Siguiente y Aleatorio que avisan a App con callbacks.
 - `src/styles.css`: estilos responsive (320, 768 y 1280 px), foco visible y botones de 44 px.
@@ -73,7 +74,9 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | 03 | #4 | Componente `Testimonial` y montaje con `main.jsx` | Javier | Clara | #13 |
 | — | — | README con estructura, decisiones y registro de avances | Javier | Clara | #14 |
 | 04 | #5 | `Controls` y navegación con `useState` (Anterior, Siguiente, Aleatorio) | Clara | Javier | #16 |
-| 05 | #6 | Estilos responsive y foco visible | Javier | Clara | este PR |
+| 05 | #6 | Estilos responsive y foco visible | Javier | Clara | #17 |
+| 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | este PR |
+
 ## Traza del índice (tres registros)
 
 | Acción | Índice antes | Cálculo | Índice después | Pantalla |
@@ -83,3 +86,33 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | Siguiente | 1 | `(1 + 1) % 3` | 2 | María López · 3 de 3 |
 | Siguiente | 2 | `(2 + 1) % 3` | 0 | Ana Pérez · 1 de 3 |
 | Anterior | 0 | `(0 - 1 + 3) % 3` | 2 | María López · 3 de 3 |
+
+## Pruebas de la etapa básica (P01–P10)
+P01 a P07 se hicieron con los tres registros iniciales; P06 y P07 se hicieron
+comentando temporalmente los objetos de `data.js`, que después se restauró.
+
+| Prueba | Acción y resultado esperado | Resultado obtenido | Estado |
+|---|---|---|---|
+| P01 Inicio | Se muestra Ana y la posición 1 de 3 | Ana Pérez · Testimonio 1 de 3 | Aprobado |
+| P02 Siguiente | Desde Ana, Siguiente muestra Luis y 2 de 3 | Luis García · 2 de 3 | Aprobado |
+| P03 Límite superior | Desde María, Siguiente muestra Ana | Regresa a Ana · 1 de 3 | Aprobado |
+| P04 Límite inferior | Desde Ana, Anterior muestra María | María López · 3 de 3 | Aprobado |
+| P05 Aleatorio | Cambia a otro válido (10 veces) | Nunca repitió el actual; la lógica usa un salto de 1 a total − 1 | Aprobado |
+| P06 Un registro | Con un objeto, los controles mantienen el registro | Se queda Ana · 1 de 1, sin errores | Aprobado |
+| P07 Sin registros | Con [] aparece el mensaje y no hay controles | "No hay testimonios disponibles." sin botones | Aprobado |
+| P08 Ocho registros | Navegación completa y contador de 8 | Recorre los 8 y vuelve a 1 de 8 | Aprobado |
+| P09 Presentación | Tres anchos, texto largo y teclado | Sin scroll horizontal en 320, 768 y 1280 px; texto largo ajustado; foco visible con Tab | Aprobado |
+| P10 Compilación | npm run build sin errores | Build correcto; consola sin errores de la aplicación | Aprobado |
+
+### Corrección registrada
+- **Entrada:** en el Avance 2 se hizo el commit sin crear antes la rama `avance-02-datos`.
+- **Resultado observado:** el commit quedó en `main` y `git push -u origin avance-02-datos`
+  falló con "src refspec avance-02-datos does not match any".
+- **Resultado esperado:** el commit debía subirse en su propia rama para revisarse con un Pull Request.
+- **Corrección:** se creó la rama con `git switch -c avance-02-datos`, se regresó `main`
+  con `git branch -f main origin/main` y se volvió a hacer el push. Se comprobó en GitHub
+  que la rama tenía el commit y que `main` no había cambiado.
+
+### Revisión de consola
+Los errores que aparecían en la consola de Chrome venían de una extensión del navegador.
+En una ventana de incógnito, sin extensiones, la consola no mostró errores de la aplicación.
