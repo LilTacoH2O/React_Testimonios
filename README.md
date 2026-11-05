@@ -14,6 +14,7 @@ manual (Anterior, Siguiente, Aleatorio) y reproducción automática, construida 
 
 ## Etapa actual
 Etapa básica (P01–P10) y ampliación con reproducción automática (A01–A07) terminadas.
+Experimento de reutilización realizado.
 
 ## Versiones
 - Node.js: v24.15.0
@@ -79,7 +80,8 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | 05 | #6 | Estilos responsive y foco visible | Javier | Clara | #17 |
 | 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | #18 |
 | 07 | #8 | Revisión por otra pareja; se atendieron sus sugerencias | Javier | Clara | #19 |
-| 08 | #9 | Reproducción automática con `useEffect` (Pausar/Reanudar) | Javier | Clara | este PR |
+| 08 | #9 | Reproducción automática con `useEffect` (Pausar/Reanudar) | Javier | Clara | #__ |
+| 09 | #10 | Experimento de reutilización (rama `experimento-reutilizacion`) | Clara | Javier | este PR |
 
 ## Traza del índice (tres registros)
 
@@ -155,3 +157,20 @@ Con la red normal y en una ventana de incógnito, la consola no mostró errores 
 | A05 Límites | El último vuelve al primero | Del 8 pasa al 1 | Aprobado |
 | A06 Pocos datos | Con 0 o 1 registro no se crea un intervalo | Con 1 registro no aparece Reanudar; con 0 aparece el mensaje sin botones | Aprobado |
 | A07 Limpieza | Sin intervalos acumulados | Tras alternar Pausar/Reanudar sigue cada ~5 s; al pausar se detiene; `clearInterval` en el return del efecto | Aprobado |
+
+## Experimento de reutilización
+Se hizo en la rama `experimento-reutilizacion`, que no se fusionó a `main`.
+- **Qué se hizo:** se mostraron dos tarjetas más con el mismo componente
+  (`<Testimonial item={testimonios[0]} />` y `<Testimonial item={testimonios[1]} />`)
+  y se cambió una sola regla de `.testimonial-card` (el color de fondo a `#fff8e1`).
+- **Resultado:** las tres tarjetas recibieron el cambio al mismo tiempo, porque todas usan `Testimonial`.
+- **Duplicación evitada:** sin el componente habría que copiar la imagen, el nombre, el cargo y el
+  comentario en cada lugar, y repetir cada cambio visual en todas las copias.
+
+| Cambio solicitado | Lugar principal del cambio |
+|---|---|
+| Agregar un testimonio | `data.js` |
+| Modificar la tarjeta de todas las personas | `Testimonial.jsx` y sus estilos |
+| Cambiar los textos de los controles | `Controls.jsx` |
+| Cambiar el comportamiento de navegación | `App.jsx` |
+| Modificar apariencia sin cambiar navegación | `styles.css` |
