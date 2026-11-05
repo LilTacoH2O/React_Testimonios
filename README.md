@@ -9,11 +9,12 @@ manual (Anterior, Siguiente, Aleatorio), construida con React y Vite.
 
 ## Enlaces
 - Repositorio: https://github.com/LilTacoH2O/React_Testimonios
-- Tablero Scrum: [pegar enlace del proyecto React Testimonios · Scrum]
+- Tablero Scrum: https://github.com/users/LilTacoH2O/projects/1
+- Sitio publicado: http://testimonios-javier-clara.surge.sh/
 
 ## Etapa actual
-Sprint 1 · Etapa básica: navegación, estilos y pruebas P01–P10 terminados.
-Pendiente: revisión por otra pareja y Sprint 2 (ampliación).
+Sprint 1 · Etapa básica terminada: P01–P10 aprobadas y revisión por otra pareja.
+En desarrollo: Sprint 2 · Ampliación.
 
 ## Versiones
 - Node.js: v24.15.0
@@ -42,7 +43,7 @@ npm run preview   # revisar la compilación localmente
    `Testimonial` no importa `data.js`, recibe el objeto por la prop `item`.
 2. **Componente reutilizable.** `Testimonial` presenta cualquier testimonio;
    no elige personas ni modifica el arreglo.
-3. **Estilos propios.** Se quitaron `App.css` e `index.css` de la plantilla de Vite;
+3. **Estilos propios.** Se quitaron `App.css`, `index.css` y `src/assets` de la plantilla de Vite;
    los estilos se importan una sola vez desde `main.jsx`.
 4. **Un solo dueño del estado.** Solo `App` guarda el índice (`useState`).
    `Controls` no cambia el índice: recibe `onPrev`, `onNext` y `onRandom` y avisa con el clic.
@@ -75,7 +76,8 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | — | — | README con estructura, decisiones y registro de avances | Javier | Clara | #14 |
 | 04 | #5 | `Controls` y navegación con `useState` (Anterior, Siguiente, Aleatorio) | Clara | Javier | #16 |
 | 05 | #6 | Estilos responsive y foco visible | Javier | Clara | #17 |
-| 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | este PR |
+| 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | #__ |
+| 07 | #8 | Revisión por otra pareja; se atendieron sus sugerencias | Javier | Clara | este PR |
 
 ## Traza del índice (tres registros)
 
@@ -116,3 +118,17 @@ comentando temporalmente los objetos de `data.js`, que después se restauró.
 ### Revisión de consola
 Los errores que aparecían en la consola de Chrome venían de una extensión del navegador.
 En una ventana de incógnito, sin extensiones, la consola no mostró errores de la aplicación.
+
+## Revisión por otra pareja
+- **Pareja revisora:** Juan Martín Arriaga Alejos y Owen Alberto Hernández Naranjillo.
+- **Medio:** la revisión se recibió en nuestro Google Doc; captura en el documento de evidencias
+  y transcripción en el issue #8.
+- **Qué revisaron:** repositorio, tablero y sitio publicado. Confirmaron que Testimonial solo presenta,
+  Controls solo avisa con callbacks, App es el único que guarda el índice, los extremos y Aleatorio
+  funcionan, se manejan 0 y 1 registros, se ve bien en móvil y con teclado, y P01–P10 tienen resultados.
+- **Sugerencias recibidas:**
+  1. Agregar el enlace real del tablero en el README.
+  2. Quitar la carpeta `src/assets`, que ya no se usaba.
+- **Cambios realizados:** se agregó el enlace del tablero (y el del sitio publicado) y se eliminó `src/assets`.
+- **Revisión que hicimos nosotros:** revisamos el proyecto de la misma pareja
+  (https://github.com/nitram047/carousel-testimonial).
