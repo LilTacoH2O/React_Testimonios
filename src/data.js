@@ -6,6 +6,7 @@ const testimonios = [
     texto: 'Este servicio cambió la forma en que trabajamos. ¡Altamente recomendado!',
     foto: 'https://i.pravatar.cc/150?img=32'
   },
+  
   {
     id: 2,
     nombre: 'Luis García',
