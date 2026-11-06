@@ -76,13 +76,13 @@ el Driver hace el commit y abre el Pull Request, y el Navigator lo revisa y lo f
 | 02 | #3 | `data.js` con los tres testimonios del docente | Clara | Javier | #12 |
 | 03 | #4 | Componente `Testimonial` y montaje con `main.jsx` | Javier | Clara | #13 |
 | — | — | README con estructura, decisiones y registro de avances | Javier | Clara | #14 |
-| 04 | #5 | `Controls` y navegación con `useState` (Anterior, Siguiente, Aleatorio) | Clara | Javier | #15 |
+| 04 | #5 | `Controls` y navegación con `useState` (Anterior, Siguiente, Aleatorio) | Clara | Javier | #15 y #16 |
 | 05 | #6 | Estilos responsive y foco visible | Javier | Clara | #17 |
 | 06 | #7 | Ocho registros y pruebas P01–P10 | Clara | Javier | #18 |
 | 07 | #8 | Revisión por otra pareja; se atendieron sus sugerencias | Javier | Clara | #19 |
-| 08 | #9 | Reproducción automática con `useEffect` (Pausar/Reanudar) | Javier | Clara | #__ |
-| 09 | #10 | Experimento de reutilización (rama `experimento-reutilizacion`) | Clara | Javier | #__ |
-| 10 | #11 | README final, reflexiones y entrega | Javier y Clara | Javier y Clara | este PR |
+| 08 | #9 | Reproducción automática con `useEffect` (Pausar/Reanudar) | Javier | Clara | #20 |
+| 09 | #10 | Experimento de reutilización (rama `experimento-reutilizacion`) | Clara | Javier | #21 |
+| 10 | #11 | README final, reflexiones y entrega | Javier y Clara | Javier y Clara | #22 |
 
 ## Traza del índice (tres registros)
 
@@ -221,58 +221,42 @@ Se hizo en la rama `experimento-reutilizacion`, que no se fusionó a `main`.
 5. **Lo que todavía no comprendo:** si los testimonios vinieran de una API, ¿dónde conviene cargarlos
    y qué pasa con el índice si llega un arreglo más corto?
 
-## Historial de commits
+## Evidencias
+- Documento de evidencias (capturas de cada avance, pruebas P01–P10 y A01–A07, tablero y revisión):
+  [docs/evidencias-practica.pdf](docs/evidencias-practica.pdf)
+- Etiquetas de versión: `v1-etapa-basica` (navegación manual) y `v2-autoplay` (con reproducción automática).
+- Rama del experimento de reutilización: `experimento-reutilizacion` (no se fusionó a `main`).
 
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (1/1), done.
-remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 2.96 KiB | 216.00 KiB/s, done.
-From https://github.com/LilTacoH2O/React_Testimonios
- * [new branch]      avance-10-entrega -> origin/avance-10-entrega
-branch 'avance-10-entrega' set up to track 'origin/avance-10-entrega'.
-Switched to a new branch 'avance-10-entrega'
+## Historial de commits
+Salida de `git log --format="%h | %an | %ad | %s" --date=short`.
+`pauli050` = Clara · `Javier Alexander Martinez Flores` y `LilTacoH2O` = Javier.
+
+```
+74fc25a | Javier Alexander Martinez Flores | 2026-11-05 | Integrar main en avance-10-entrega
+684801c | Javier Alexander Martinez Flores | 2026-11-05 | Avance 10 (#11): numeros de PR en el registro de avances - Driver: Javier / Navigator: Clara
+b8eb1b1 | pauli050 | 2026-11-05 | Merge pull request #22 from LilTacoH2O/avance-10-entrega
+9220457 | pauli050 | 2026-11-05 | Avance 10 (#11): historial de commits en README - Driver: Clara / Navigator: Javier
 a664135 | Javier Alexander Martinez Flores | 2026-11-05 | Avance 10 (#11): README final con comprension, retrospectiva y reflexiones - Driver: Javier / Navigator: Clara
 92f288b | LilTacoH2O | 2026-11-05 | Merge pull request #21 from LilTacoH2O/avance-09-reutilizacion
-baaf51b | pauli050 | 2026-11-05 | Avance 09 (#10): comparacion de reutilizacion en README - D
-river: Clara / Navigator: Javier
+baaf51b | pauli050 | 2026-11-05 | Avance 09 (#10): comparacion de reutilizacion en README - Driver: Clara / Navigator: Javier
 bec4dff | pauli050 | 2026-11-05 | Merge pull request #20 from LilTacoH2O/avance-08-autoplay
-e610835 | Javier Alexander Martinez Flores | 2026-11-05 | Avance 08 (#9): reproduccion automa
-tica con useEffect y limpieza - Driver: Javier / Navigator: Clara
+e610835 | Javier Alexander Martinez Flores | 2026-11-05 | Avance 08 (#9): reproduccion automatica con useEffect y limpieza - Driver: Javier / Navigator: Clara
 2695cbc | pauli050 | 2026-11-05 | Merge pull request #19 from LilTacoH2O/avance-07-revision
-7cff041 | Javier Alexander Martinez Flores | 2026-11-05 | Avance 07 (#8): sugerencias de la r
-evision por otra pareja - Driver: Javier / Navigator: Clara
-92e3843 | LilTacoH2O | 2026-11-04 | Merge pull request #18 from LilTacoH2O/avance-06-verifica
-cion
-7d7bd83 | pauli050 | 2026-11-04 | Avance 06 (#7): ocho registros y pruebas P01-P10 - Driver: 
-Clara / Navigator: Javier
+7cff041 | Javier Alexander Martinez Flores | 2026-11-05 | Avance 07 (#8): sugerencias de la revision por otra pareja - Driver: Javier / Navigator: Clara
+92e3843 | LilTacoH2O | 2026-11-04 | Merge pull request #18 from LilTacoH2O/avance-06-verificacion
+7d7bd83 | pauli050 | 2026-11-04 | Avance 06 (#7): ocho registros y pruebas P01-P10 - Driver: Clara / Navigator: Javier
 398ebb5 | pauli050 | 2026-11-04 | Merge pull request #17 from LilTacoH2O/avance-05-estilos
-e3d6a0d | Javier Alexander Martinez Flores | 2026-11-04 | Avance 05 (#6): estilos responsive 
-y foco visible - Driver: Javier / Navigator: Clara
-ad9bdf1 | LilTacoH2O | 2026-11-04 | Merge pull request #16 from LilTacoH2O/avance-04-navegaci
-on
-b5287a2 | pauli050 | 2026-11-04 | Avance 04 (#5): navegacion con Controls y useState, README 
-actualizado - Driver: Clara / Navigator: Javier
-a13bd5e | LilTacoH2O | 2026-11-04 | Merge pull request #15 from LilTacoH2O/avance-04-navegaci
-on
-9a5c715 | pauli050 | 2026-11-04 | Avance 04 (#5): navegacion con Controls y useState - Driver
-: Clara / Navigator: Javier
-a4dd014 | LilTacoH2O | 2026-11-04 | Merge pull request #14 from LilTacoH2O/docs-readme-avance
-s
-514de22 | Javier Alexander Martinez Flores | 2026-11-04 | README: estructura, decisiones y re
-gistro de avances 01-03 - Driver: Javier / Navigator: Clara
+e3d6a0d | Javier Alexander Martinez Flores | 2026-11-04 | Avance 05 (#6): estilos responsive y foco visible - Driver: Javier / Navigator: Clara
+ad9bdf1 | LilTacoH2O | 2026-11-04 | Merge pull request #16 from LilTacoH2O/avance-04-navegacion
+b5287a2 | pauli050 | 2026-11-04 | Avance 04 (#5): navegacion con Controls y useState, README actualizado - Driver: Clara / Navigator: Javier
+a13bd5e | LilTacoH2O | 2026-11-04 | Merge pull request #15 from LilTacoH2O/avance-04-navegacion
+9a5c715 | pauli050 | 2026-11-04 | Avance 04 (#5): navegacion con Controls y useState - Driver: Clara / Navigator: Javier
+a4dd014 | LilTacoH2O | 2026-11-04 | Merge pull request #14 from LilTacoH2O/docs-readme-avances
+514de22 | Javier Alexander Martinez Flores | 2026-11-04 | README: estructura, decisiones y registro de avances 01-03 - Driver: Javier / Navigator: Clara
 916aadc | pauli050 | 2026-11-04 | Merge pull request #13 from LilTacoH2O/avance-03-tarjeta
-6cc0467 | Javier Alexander Martinez Flores | 2026-11-04 | Avance 03 (#4): componente Testimon
-ial y montaje de la app - Driver: Javier / Navigator: Clara
+6cc0467 | Javier Alexander Martinez Flores | 2026-11-04 | Avance 03 (#4): componente Testimonial y montaje de la app - Driver: Javier / Navigator: Clara
 da186f7 | LilTacoH2O | 2026-11-04 | Merge pull request #12 from LilTacoH2O/avance-02-datos
-9be9082 | pauli050 | 2026-11-04 | Avance 02 (#3): datos de testimonios en data.js - Driver: C
-lara / Navigator: Javier
-f17e88c | Javier Alexander Martinez Flores | 2026-11-04 | Avance 01 (#2): proyecto base con V
-ite + React - Driver: Javier / Navigator: Clara
-5b4a341 | LilTacoH2O | 2026-11-04 | Initial commit
-(END)
 9be9082 | pauli050 | 2026-11-04 | Avance 02 (#3): datos de testimonios en data.js - Driver: Clara / Navigator: Javier
 f17e88c | Javier Alexander Martinez Flores | 2026-11-04 | Avance 01 (#2): proyecto base con Vite + React - Driver: Javier / Navigator: Clara
 5b4a341 | LilTacoH2O | 2026-11-04 | Initial commit
-
-(END)
+```
